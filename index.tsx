@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css'; // Import Tailwind CSS directives
-import { 
-  Plus, Calendar, FileText, Clock, History, Settings, 
-  Trash2, Edit2, Check, X, Share, Copy, Moon, Sun, 
+import {
+  Plus, Calendar, FileText, Clock, History, Settings,
+  Trash2, Edit2, Check, X, Share, Copy, Moon, Sun,
   Download, Upload, Search, ChevronRight, User, MoreVertical,
   Smartphone, Tablet, Monitor, ChevronDown, AlertCircle, Briefcase, BadgeCheck,
   MapPin, Users, Save, HardDrive, CheckCircle, Wifi, WifiOff
@@ -64,10 +64,10 @@ interface AppData {
 // --- Constants ---
 
 const INITIAL_DATA: AppData = {
-  profile: { 
-    name: 'Agus Rinaldi', 
-    idNumber: '1998202507011160', 
-    unit: 'Ponpes', 
+  profile: {
+    name: 'Agus Rinaldi',
+    idNumber: '1998202507011160',
+    unit: 'Ponpes',
     employeeStatus: 'GHY',
     functionalPosition: 'Staff TU Pondok',
     structuralPosition: 'Guru',
@@ -142,9 +142,9 @@ Wassalamu'alaikum warahmatullahi wabarakatuh.`
   viewMode: 'mobile'
 };
 
-const DAYS = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+const DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 const VARIABLES = [
-  '{{nama}}', '{{nip}}', '{{unit}}', 
+  '{{nama}}', '{{nip}}', '{{unit}}',
   '{{status}}', '{{jabatan_struktural}}', '{{jabatan_fungsional}}',
   '{{alasan}}', '{{tanggal}}', '{{jadwal_kbm}}',
   '{{jam_masuk}}', '{{jam_pulang}}',
@@ -190,7 +190,7 @@ const calculateJP = (start: string, end: string) => {
     const [eh, em] = end.split(':').map(Number);
     if (isNaN(sh) || isNaN(sm) || isNaN(eh) || isNaN(em)) return 0;
     const diffMins = (eh * 60 + em) - (sh * 60 + sm);
-    const jp = Math.round(diffMins / 40); 
+    const jp = Math.round(diffMins / 40);
     return jp > 0 ? jp : 0;
   } catch (e) { return 0; }
 };
@@ -202,18 +202,18 @@ const formatTime = (time: string) => {
 
 // --- Components ---
 
-const ConfirmDialog = ({ 
-  isOpen, 
-  title, 
-  message, 
-  onConfirm, 
-  onCancel 
-}: { 
-  isOpen: boolean, 
-  title: string, 
-  message: string, 
-  onConfirm: () => void, 
-  onCancel: () => void 
+const ConfirmDialog = ({
+  isOpen,
+  title,
+  message,
+  onConfirm,
+  onCancel
+}: {
+  isOpen: boolean,
+  title: string,
+  message: string,
+  onConfirm: () => void,
+  onCancel: () => void
 }) => {
   if (!isOpen) return null;
   return (
@@ -251,7 +251,7 @@ const PromptDialog = ({
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm animate-fade-in">
       <div className="bg-white dark:bg-ios-cardDark w-full max-w-xs rounded-3xl shadow-2xl p-6 transform transition-all scale-100 border border-white/10 animate-scale-fade">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">{title}</h3>
-        <input 
+        <input
           autoFocus
           className="w-full p-3 mb-6 bg-gray-100 dark:bg-gray-800 rounded-xl outline-none text-gray-900 dark:text-white font-medium"
           placeholder={placeholder}
@@ -277,12 +277,12 @@ const NetworkStatus = ({ isOnline }: { isOnline: boolean }) => {
   );
 };
 
-const Header = ({ 
-  title, 
-  onMenuClick 
-}: { 
-  title: string, 
-  onMenuClick: () => void 
+const Header = ({
+  title,
+  onMenuClick
+}: {
+  title: string,
+  onMenuClick: () => void
 }) => (
   <div className="z-20 w-full bg-white dark:bg-ios-cardDark border-b border-ios-separator/30 dark:border-ios-separatorDark/30 px-6 h-24 pb-4 flex items-end justify-between shadow-sm shrink-0 transition-colors duration-300 rounded-t-[40px]">
     <div className="flex items-center gap-3 mb-1">
@@ -344,7 +344,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
     halaqahPlace: '',
     badalSolution: ''
   });
-  
+
   const [editedMessage, setEditedMessage] = useState('');
   const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(null);
   const [deleteTypeConfirm, setDeleteTypeConfirm] = useState(false);
@@ -403,7 +403,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
       const dayIndex = dateObj.getDay();
       const dayName = DAYS[dayIndex] || '';
       const daySchedules = data.schedules.filter(s => s.day === dayName).sort((a, b) => (a.startTime || '').localeCompare(b.startTime || ''));
-      
+
       let scheduleList = '';
       if (daySchedules.length > 0) {
         scheduleList = daySchedules.map((s) => {
@@ -482,7 +482,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
   const confirmDeleteTypeAction = () => {
       const typeToDelete = formData.type;
       if(typeToDelete === 'KBM' || typeToDelete === 'Halaqah') return; // Safety
-      
+
       const newTypes = data.customTypes.filter(t => t !== typeToDelete);
       setData((prev: AppData) => ({
           ...prev,
@@ -496,13 +496,13 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
     <div className="animate-fade-in h-full flex flex-col">
       <div className="p-4 pb-0 shrink-0">
         <div className="bg-white dark:bg-ios-cardDark p-1 rounded-xl flex shadow-sm border border-ios-separator/20 transition-colors duration-300">
-          <button 
+          <button
             onClick={() => setMode('input')}
             className={`flex-1 py-3 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all ${mode === 'input' ? 'bg-ios-blue text-white shadow-md' : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
           >
             <Edit2 size={16} /> Isi Data
           </button>
-          <button 
+          <button
             onClick={handleSwitchToResult}
             className={`flex-1 py-3 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all ${mode === 'result' ? 'bg-green-600 text-white shadow-md' : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'}`}
           >
@@ -513,7 +513,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
 
       {mode === 'input' ? (
         <div className="p-4 space-y-6 overflow-y-auto pb-24">
-          <div 
+          <div
             onClick={onOpenSettings}
             className="bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl p-6 text-white shadow-lg shadow-blue-500/20 relative overflow-hidden cursor-pointer group transition-transform active:scale-[0.98]"
           >
@@ -531,7 +531,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                <span className="bg-white/20 px-2 py-0.5 rounded-full backdrop-blur-sm">{data.profile?.unit || 'Unit -'}</span>
                <span className="bg-white/20 px-2 py-0.5 rounded-full backdrop-blur-sm">{data.profile?.structuralPosition || 'Jabatan -'}</span>
             </div>
-            
+
             <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-sm p-2 rounded-full">
               <Edit2 size={16} />
             </div>
@@ -542,7 +542,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
               <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block">Jenis Izin</label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <select 
+                  <select
                     value={formData.type}
                     onChange={e => setFormData({...formData, type: e.target.value})}
                     className="w-full appearance-none bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white p-4 rounded-xl outline-none font-medium border border-transparent focus:border-ios-blue transition-colors duration-300 pr-10"
@@ -551,7 +551,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
                 </div>
-                <button 
+                <button
                   onClick={() => setAddTypeDialogOpen(true)}
                   className="w-14 flex items-center justify-center bg-blue-50 dark:bg-gray-800 text-ios-blue rounded-xl hover:bg-blue-100 dark:hover:bg-gray-700 transition-colors duration-300 shadow-sm"
                 >
@@ -559,7 +559,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                 </button>
                 {/* Delete button for custom types or even default types except mandatory ones */}
                 {!['KBM', 'Halaqah'].includes(formData.type) && (
-                    <button 
+                    <button
                       onClick={handleDeleteType}
                       className="w-14 flex items-center justify-center bg-red-50 dark:bg-red-900/20 text-red-500 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors duration-300 shadow-sm"
                     >
@@ -573,8 +573,8 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
               <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block">Tanggal Izin</label>
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 flex items-center gap-3 border border-transparent focus-within:border-ios-blue transition-colors duration-300">
                 <Calendar size={20} className="text-gray-400" />
-                <input 
-                  type="date" 
+                <input
+                  type="date"
                   value={formData.date}
                   onChange={e => setFormData({...formData, date: e.target.value})}
                   className="bg-transparent w-full outline-none font-medium text-gray-800 dark:text-white"
@@ -587,7 +587,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                   <div className="grid grid-cols-2 gap-4">
                       <div>
                           <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block flex gap-1 items-center"><Clock size={10}/> Waktu Halaqah</label>
-                          <input 
+                          <input
                             type="text"
                             value={formData.halaqahTime}
                             onChange={e => setFormData({...formData, halaqahTime: e.target.value})}
@@ -597,7 +597,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                       </div>
                       <div>
                           <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block flex gap-1 items-center"><MapPin size={10}/> Tempat</label>
-                          <input 
+                          <input
                             type="text"
                             value={formData.halaqahPlace}
                             onChange={e => setFormData({...formData, halaqahPlace: e.target.value})}
@@ -608,12 +608,12 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                   </div>
                </>
             )}
-            
+
             <div>
               <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block">
                  {formData.type === 'Halaqah' ? 'Pesan & Keterangan Izin' : 'Alasan'}
               </label>
-              <textarea 
+              <textarea
                 rows={2}
                 value={formData.reason}
                 onChange={e => setFormData({...formData, reason: e.target.value})}
@@ -625,7 +625,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
             {formData.type === 'Halaqah' && (
                <div>
                   <label className="text-xs font-semibold text-gray-400 uppercase mb-2 block flex gap-1 items-center"><Users size={10}/> Solusi Badal</label>
-                  <textarea 
+                  <textarea
                     rows={2}
                     value={formData.badalSolution}
                     onChange={e => setFormData({...formData, badalSolution: e.target.value})}
@@ -670,7 +670,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                   <p className="text-xs font-semibold text-gray-400 uppercase">Jenis Draft</p>
                   <h2 className="text-2xl font-bold text-ios-blue">{formData.type}</h2>
               </div>
-              <button 
+              <button
                   onClick={handleSaveAsTemplate}
                   className="flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-ios-blue bg-white dark:bg-gray-800 px-3 py-2 rounded-lg border shadow-sm transition-colors duration-300"
                >
@@ -684,8 +684,8 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                  <FileText size={14} />
                  <span className="text-xs font-bold uppercase">Preview & Edit Hasil</span>
                </div>
-               <button 
-                  onClick={() => { 
+               <button
+                  onClick={() => {
                      const newHistory: HistoryItem = {
                         id: Date.now().toString(),
                         timestamp: Date.now(),
@@ -700,7 +700,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
                   <History size={12} /> Simpan ke Riwayat
                </button>
              </div>
-             <textarea 
+             <textarea
                className="w-full h-full p-4 text-base leading-relaxed outline-none bg-transparent resize-none font-sans text-gray-800 dark:text-gray-200 flex-1"
                value={editedMessage}
                onChange={e => setEditedMessage(e.target.value)}
@@ -708,7 +708,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
            </div>
 
            <div className="grid grid-cols-2 gap-3 shrink-0">
-              <button 
+              <button
                 onClick={() => {
                   navigator.clipboard.writeText(editedMessage);
                   alert('Teks berhasil disalin!');
@@ -717,7 +717,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
               >
                 <Copy size={18} /> Salin
               </button>
-              <button 
+              <button
                 onClick={() => {
                   const url = `https://wa.me/?text=${encodeURIComponent(editedMessage)}`;
                   window.open(url, '_blank');
@@ -730,7 +730,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
         </div>
       )}
 
-      <PromptDialog 
+      <PromptDialog
          isOpen={addTypeDialogOpen}
          title="Tambah Jenis Izin"
          placeholder="Masukkan nama jenis izin baru..."
@@ -738,7 +738,7 @@ const CreateView = ({ data, setData, onOpenSettings }: { data: AppData, setData:
          onCancel={() => setAddTypeDialogOpen(false)}
       />
 
-      <ConfirmDialog 
+      <ConfirmDialog
          isOpen={deleteTypeConfirm}
          title="Hapus Jenis Izin?"
          message={`Apakah Anda yakin ingin menghapus jenis izin "${formData.type}"?`}
@@ -754,12 +754,12 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [editingSchedule, setEditingSchedule] = useState<Schedule | null>(null);
-  
-  const initialFormState: Schedule = { 
-    id: '', day: 'Minggu', subject: '', 
-    className: '', level: '', 
-    startTime: '07:00', endTime: '08:00', 
-    note: '' 
+
+  const initialFormState: Schedule = {
+    id: '', day: 'Minggu', subject: '',
+    className: '', level: '',
+    startTime: '07:00', endTime: '08:00',
+    note: ''
   };
   const [form, setForm] = useState<Schedule>(initialFormState);
 
@@ -826,7 +826,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                 <div className="w-1.5 h-6 bg-ios-blue rounded-full"></div>
                 <h3 className="font-bold text-lg text-gray-900 dark:text-white">{group.day}</h3>
               </div>
-              <button 
+              <button
                 onClick={() => openAddModal(group.day)}
                 className="text-ios-blue text-xs font-bold flex items-center gap-1 bg-blue-50 dark:bg-blue-900/20 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors duration-300"
               >
@@ -842,8 +842,8 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
               ) : (
                 <div className="divide-y divide-gray-100 dark:divide-gray-800">
                   {group.items.map(item => (
-                    <div 
-                      key={item.id} 
+                    <div
+                      key={item.id}
                       onClick={() => openEditModal(item)}
                       className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer flex justify-between items-center group"
                     >
@@ -866,14 +866,14 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
       {/* Edit/Add Modal */}
       {modalOpen && (
          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4">
-           <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-md rounded-t-2xl sm:rounded-3xl p-6 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto relative">
+           <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-md rounded-t-2xl sm:rounded-3xl p-6 pb-24 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto relative">
               {!showDeleteConfirm ? (
                 <>
                   <div className="flex justify-between items-center mb-6">
                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">{editingSchedule ? 'Edit Mapel' : 'Tambah Mapel'}</h2>
                      <button onClick={() => setModalOpen(false)} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-full text-gray-600 dark:text-gray-300"><X size={20}/></button>
                   </div>
-                  
+
                   <form onSubmit={handleSave} className="space-y-4">
                     {editingSchedule && (
                        <div className="flex justify-end">
@@ -883,7 +883,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
 
                     <div>
                        <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Hari</label>
-                       <select 
+                       <select
                           value={form.day} onChange={e => setForm({...form, day: e.target.value})}
                           className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
                        >
@@ -893,9 +893,9 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
 
                     <div>
                        <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block flex gap-2 items-center"><FileText size={12}/> Mata Pelajaran</label>
-                       <input 
+                       <input
                          required
-                         placeholder="Contoh: Aqidah"
+                         placeholder="Contoh: Matematika Wajib"
                          value={form.subject} onChange={e => setForm({...form, subject: e.target.value})}
                          className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border-2 border-ios-blue/20 focus:border-ios-blue transition-colors font-medium"
                        />
@@ -904,7 +904,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                     <div className="grid grid-cols-2 gap-4">
                        <div>
                          <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block flex gap-2 items-center">Kelas</label>
-                         <input 
+                         <input
                            placeholder="X A"
                            value={form.className} onChange={e => setForm({...form, className: e.target.value})}
                            className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
@@ -912,7 +912,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                        </div>
                        <div>
                          <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block flex gap-2 items-center">Jenjang</label>
-                         <input 
+                         <input
                            placeholder="MA"
                            value={form.level} onChange={e => setForm({...form, level: e.target.value})}
                            className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
@@ -928,7 +928,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                           </span>
                        </div>
                        <div className="flex items-center gap-3">
-                          <input 
+                          <input
                             type="time" required
                             step="60"
                             style={{ colorScheme: data.theme === 'dark' ? 'dark' : 'light' }}
@@ -942,7 +942,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                             className="flex-1 p-2 rounded-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-white text-center outline-none appearance-none cursor-pointer border border-gray-200 dark:border-gray-700 focus:border-ios-blue focus:ring-1 focus:ring-ios-blue transition-all font-medium"
                           />
                           <span className="font-bold text-gray-400">-</span>
-                          <input 
+                          <input
                             type="time" required
                             step="60"
                             style={{ colorScheme: data.theme === 'dark' ? 'dark' : 'light' }}
@@ -960,7 +960,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
 
                     <div>
                        <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block flex gap-2 items-center">Tugas / Catatan</label>
-                       <input 
+                       <input
                          placeholder="Contoh: Kerjakan LKS Halaman 10"
                          value={form.note} onChange={e => setForm({...form, note: e.target.value})}
                          className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
@@ -1059,7 +1059,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
            </div>
         </div>
       ))}
-      <button 
+      <button
         onClick={openAdd}
         className="w-full py-3 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl text-gray-500 font-bold flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300"
       >
@@ -1069,7 +1069,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
       {/* Template Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4">
-          <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-lg rounded-t-2xl sm:rounded-3xl p-6 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-lg rounded-t-2xl sm:rounded-3xl p-6 pb-24 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto">
              <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{editingTpl ? 'Edit Template' : 'Buat Template'}</h2>
                 <button onClick={() => setModalOpen(false)} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-full text-gray-600 dark:text-gray-300"><X size={20}/></button>
@@ -1077,7 +1077,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
              <form onSubmit={saveTemplate} className="space-y-4">
                 <div>
                    <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Nama Template</label>
-                   <input 
+                   <input
                      required
                      value={form.name} onChange={e => setForm({...form, name: e.target.value})}
                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
@@ -1085,7 +1085,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
                 </div>
                 <div>
                    <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Tipe Izin (untuk auto-select)</label>
-                   <select 
+                   <select
                      value={form.type || 'KBM'} onChange={e => setForm({...form, type: e.target.value})}
                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue font-medium"
                    >
@@ -1095,7 +1095,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
                 </div>
                 <div>
                    <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Isi Konten</label>
-                   <textarea 
+                   <textarea
                      required
                      rows={10}
                      value={form.content} onChange={e => setForm({...form, content: e.target.value})}
@@ -1108,8 +1108,8 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
                         </div>
                         <div className="flex flex-wrap gap-1">
                             {VARIABLES.map(v => (
-                                <button 
-                                    key={v} 
+                                <button
+                                    key={v}
                                     type="button"
                                     onClick={() => insertVariableToTemplate(v)}
                                     className="px-2 py-1 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-300 text-[10px] font-mono rounded border border-blue-100 dark:border-blue-900 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
@@ -1155,7 +1155,7 @@ const HistoryView = ({ data, setData }: { data: AppData, setData: any }) => {
                 <span className="text-xs text-gray-400">{new Date(h.timestamp).toLocaleDateString()}</span>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3 whitespace-pre-wrap">{h.content}</p>
-              <button 
+              <button
                 onClick={() => {
                   if(confirm("Hapus riwayat ini?")) {
                     setData((prev: AppData) => ({...prev, history: prev.history.filter(x => x.id !== h.id)}));
@@ -1167,8 +1167,8 @@ const HistoryView = ({ data, setData }: { data: AppData, setData: any }) => {
               </button>
             </div>
           ))}
-          <button 
-             onClick={() => { 
+          <button
+             onClick={() => {
                if(confirm("Apakah Anda yakin ingin menghapus SEMUA riwayat?")) {
                  setData((prev: AppData) => ({...prev, history: []}));
                }
@@ -1185,25 +1185,25 @@ const HistoryView = ({ data, setData }: { data: AppData, setData: any }) => {
 
 // --- Settings & Menu Modal ---
 
-const MenuModal = ({ 
-  isOpen, 
-  onClose, 
-  data, 
+const MenuModal = ({
+  isOpen,
+  onClose,
+  data,
   setData,
   installPrompt,
   onInstall
-}: { 
-  isOpen: boolean, 
-  onClose: () => void, 
-  data: AppData, 
+}: {
+  isOpen: boolean,
+  onClose: () => void,
+  data: AppData,
   setData: any,
   installPrompt: any,
   onInstall: () => void
 }) => {
   const [confirmConfig, setConfirmConfig] = useState<{
-      isOpen: boolean, 
-      title: string, 
-      message: string, 
+      isOpen: boolean,
+      title: string,
+      message: string,
       onConfirm: () => void
   } | null>(null);
 
@@ -1244,7 +1244,7 @@ const MenuModal = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onload = (evt) => {
         try {
@@ -1254,7 +1254,7 @@ const MenuModal = ({
         } catch(err) { alert("Gagal parsing file."); }
     };
     reader.readAsText(file);
-    e.target.value = ''; 
+    e.target.value = '';
   };
 
   const handleSave = () => {
@@ -1274,7 +1274,7 @@ const MenuModal = ({
       <div className="fixed inset-0 z-50 flex items-start justify-end p-4">
         <div className="fixed inset-0 bg-black/20 backdrop-blur-sm animate-fade-in" onClick={onClose}></div>
         <div className="relative bg-white dark:bg-ios-cardDark w-72 rounded-2xl shadow-2xl p-2 animate-scale-fade flex flex-col gap-1 mt-12 mr-2 border border-gray-100 dark:border-gray-800 origin-top-right transition-colors duration-300">
-            
+
             <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl mb-2 transition-colors duration-300">
               {(['mobile', 'tablet', 'desktop'] as ViewMode[]).map(m => (
                 <button
@@ -1289,15 +1289,15 @@ const MenuModal = ({
               ))}
             </div>
 
-            <button 
+            <button
               onClick={() => setData((prev: AppData) => ({...prev, theme: prev.theme === 'dark' ? 'light' : 'dark'}))}
               className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300"
             >
               {data.theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
               {data.theme === 'dark' ? 'Mode Terang' : 'Mode Gelap'}
             </button>
-            
-            <button 
+
+            <button
               onClick={handleExport}
               className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-200 transition-colors duration-300"
             >
@@ -1314,7 +1314,7 @@ const MenuModal = ({
 
             <div className="h-px bg-gray-100 dark:bg-gray-800 my-1"></div>
 
-            <button 
+            <button
               onClick={handleSave}
               className="flex items-center gap-3 px-4 py-3 bg-ios-blue text-white rounded-xl text-sm font-bold justify-center shadow-lg shadow-blue-500/20 hover:opacity-90 transition-opacity"
             >
@@ -1322,7 +1322,7 @@ const MenuModal = ({
             </button>
 
             {installPrompt && (
-               <button 
+               <button
                  onClick={onInstall}
                  className="flex items-center gap-3 px-4 py-3 mt-2 bg-green-600 text-white rounded-xl text-sm font-bold justify-center shadow-lg shadow-green-500/20 hover:opacity-90 transition-opacity"
                >
@@ -1332,7 +1332,7 @@ const MenuModal = ({
         </div>
       </div>
 
-      <ConfirmDialog 
+      <ConfirmDialog
         isOpen={!!confirmConfig}
         title={confirmConfig?.title || ''}
         message={confirmConfig?.message || ''}
@@ -1384,8 +1384,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     {/* Inline inputs to prevent focus loss */}
                     <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Nama Pegawai</label>
-                        <input 
-                            value={form.name || ''} 
+                        <input
+                            value={form.name || ''}
                             onChange={e => setForm({...form, name: e.target.value})}
                             className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                             placeholder="Nama Lengkap"
@@ -1393,8 +1393,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     </div>
                     <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">No. Induk Karyawan</label>
-                        <input 
-                            value={form.idNumber || ''} 
+                        <input
+                            value={form.idNumber || ''}
                             onChange={e => setForm({...form, idNumber: e.target.value})}
                             className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                             placeholder="NIP / NIK"
@@ -1403,8 +1403,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Unit / Bagian</label>
-                            <input 
-                                value={form.unit || ''} 
+                            <input
+                                value={form.unit || ''}
                                 onChange={e => setForm({...form, unit: e.target.value})}
                                 className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                                 placeholder="Unit"
@@ -1412,8 +1412,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                         </div>
                         <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Status Karyawan</label>
-                            <input 
-                                value={form.employeeStatus || ''} 
+                            <input
+                                value={form.employeeStatus || ''}
                                 onChange={e => setForm({...form, employeeStatus: e.target.value})}
                                 className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                                 placeholder="GHY / GTY"
@@ -1422,8 +1422,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     </div>
                     <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Jabatan Fungsional</label>
-                        <input 
-                            value={form.functionalPosition || ''} 
+                        <input
+                            value={form.functionalPosition || ''}
                             onChange={e => setForm({...form, functionalPosition: e.target.value})}
                             className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                             placeholder="Contoh: Staff TU"
@@ -1431,8 +1431,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     </div>
                     <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Jabatan Struktural</label>
-                        <input 
-                            value={form.structuralPosition || ''} 
+                        <input
+                            value={form.structuralPosition || ''}
                             onChange={e => setForm({...form, structuralPosition: e.target.value})}
                             className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                             placeholder="Contoh: Guru / Kepala Bagian"
@@ -1440,8 +1440,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     </div>
                     <div>
                         <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Beban Jam Kerja</label>
-                        <input 
-                            value={form.workload || ''} 
+                        <input
+                            value={form.workload || ''}
                             onChange={e => setForm({...form, workload: e.target.value})}
                             className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                             placeholder="Contoh: 29 JP"
@@ -1450,8 +1450,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Jam Masuk</label>
-                            <input 
-                                value={form.startTime || ''} 
+                            <input
+                                value={form.startTime || ''}
                                 onChange={e => setForm({...form, startTime: e.target.value})}
                                 className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                                 placeholder="07.30 WIB"
@@ -1459,15 +1459,15 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                         </div>
                         <div>
                             <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block">Jam Pulang</label>
-                            <input 
-                                value={form.endTime || ''} 
+                            <input
+                                value={form.endTime || ''}
                                 onChange={e => setForm({...form, endTime: e.target.value})}
                                 className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border border-transparent focus:border-ios-blue transition-colors font-medium"
                                 placeholder="16.00 WIB"
                             />
                         </div>
                     </div>
-                    
+
                     <div className="flex gap-3 pt-4">
                         <button type="button" onClick={() => setShowDeleteConfirm(true)} className="px-4 py-3 rounded-xl bg-red-100 text-red-600 font-bold flex items-center justify-center"><Trash2 size={20}/></button>
                         <button type="submit" className="flex-1 py-3 bg-ios-blue text-white font-bold rounded-xl shadow-lg shadow-blue-500/30">Simpan Identitas</button>
@@ -1475,8 +1475,8 @@ const ProfileModal = ({ isOpen, onClose, data, setData }: { isOpen: boolean, onC
                 </form>
             </div>
         </div>
-        
-        <ConfirmDialog 
+
+        <ConfirmDialog
             isOpen={showDeleteConfirm}
             title="Hapus Identitas?"
             message="Apakah Anda yakin ingin mengosongkan semua data identitas?"
@@ -1544,10 +1544,10 @@ const App = () => {
   return (
     <div className={`h-[100dvh] w-full flex items-center justify-center bg-gray-200 dark:bg-black p-0 sm:p-4 transition-all duration-500 font-sans antialiased`}>
       <div className={`relative w-full ${widthClass} h-full sm:h-[95vh] bg-ios-bg dark:bg-ios-bgDark sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col transition-all duration-500 ring-8 ring-black/5`}>
-        
+
         <NetworkStatus isOnline={isOnline} />
         <Header title="Izin Generator" onMenuClick={() => setMenuOpen(true)} />
-        
+
         <div className="flex-1 overflow-y-auto scroll-smooth relative">
            {activeTab === 'create' && <CreateView data={data} setData={setData} onOpenSettings={() => setProfileOpen(true)} />}
            {activeTab === 'schedule' && <ScheduleView data={data} setData={setData} />}
@@ -1558,11 +1558,11 @@ const App = () => {
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
         {/* Modals */}
-        <MenuModal 
-            isOpen={menuOpen} 
-            onClose={() => setMenuOpen(false)} 
-            data={data} 
-            setData={setData} 
+        <MenuModal
+            isOpen={menuOpen}
+            onClose={() => setMenuOpen(false)}
+            data={data}
+            setData={setData}
             installPrompt={deferredPrompt}
             onInstall={handleInstall}
         />
