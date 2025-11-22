@@ -866,7 +866,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
       {/* Edit/Add Modal */}
       {modalOpen && (
          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4">
-           <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-md rounded-t-2xl sm:rounded-3xl p-6 pb-24 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto relative">
+           <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-md rounded-t-2xl sm:rounded-3xl p-6 pb-32 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto relative">
               {!showDeleteConfirm ? (
                 <>
                   <div className="flex justify-between items-center mb-6">
@@ -1069,7 +1069,7 @@ const TemplateView = ({ data, setData }: { data: AppData, setData: any }) => {
       {/* Template Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm p-0 sm:p-4">
-          <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-lg rounded-t-2xl sm:rounded-3xl p-6 pb-24 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-ios-cardDark w-full sm:max-w-lg rounded-t-2xl sm:rounded-3xl p-6 pb-32 shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto">
              <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">{editingTpl ? 'Edit Template' : 'Buat Template'}</h2>
                 <button onClick={() => setModalOpen(false)} className="bg-gray-100 dark:bg-gray-800 p-2 rounded-full text-gray-600 dark:text-gray-300"><X size={20}/></button>
@@ -1329,6 +1329,20 @@ const MenuModal = ({
                  <Download size={18} /> Install Aplikasi
                </button>
             )}
+
+            <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col items-center text-center">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Tentang Pembuat</p>
+                <a
+                  href="https://www.threads.com/@aazeed.id"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800/50 px-3 py-1.5 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group"
+                >
+                   <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-ios-blue">{data.profile.name || "AaZeed.id"}</span>
+                   <BadgeCheck size={14} className="text-blue-500 fill-blue-500/10" />
+                </a>
+                <p className="text-[10px] text-gray-400 mt-2">v1.0.0 &copy; 2025</p>
+            </div>
         </div>
       </div>
 
