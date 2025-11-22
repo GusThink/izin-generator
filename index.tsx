@@ -142,7 +142,7 @@ Wassalamu'alaikum warahmatullahi wabarakatuh.`
   viewMode: 'mobile'
 };
 
-const DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+const DAYS = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 const VARIABLES = [
   '{{nama}}', '{{nip}}', '{{unit}}', 
   '{{status}}', '{{jabatan_struktural}}', '{{jabatan_fungsional}}',
@@ -895,7 +895,7 @@ const ScheduleView = ({ data, setData }: { data: AppData, setData: any }) => {
                        <label className="text-xs font-semibold text-gray-400 uppercase mb-1 block flex gap-2 items-center"><FileText size={12}/> Mata Pelajaran</label>
                        <input 
                          required
-                         placeholder="Contoh: Matematika Wajib"
+                         placeholder="Contoh: Aqidah"
                          value={form.subject} onChange={e => setForm({...form, subject: e.target.value})}
                          className="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white outline-none border-2 border-ios-blue/20 focus:border-ios-blue transition-colors font-medium"
                        />
