@@ -1331,15 +1331,18 @@ const MenuModal = ({
             )}
 
             <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col items-center text-center">
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Tentang Pembuat</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Tentang Developer</p>
                 <a
-                  href="https://www.threads.com/@aazeed.id"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800/50 px-3 py-1.5 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group"
+                    href="https://www.threads.net/@aazeed.id"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800/50 px-3 py-1.5 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors group"
                 >
-                   <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-ios-blue">{data.profile.name || "AaZeed.id"}</span>
-                   <BadgeCheck size={14} className="text-blue-500 fill-blue-500/10" />
+                    {/* Bagian ini diubah menjadi teks tetap */}
+                    <span className="text-xs font-bold text-gray-700 dark:text-gray-300 group-hover:text-ios-blue">
+                        AaZeed.id
+                    </span>
+                    <BadgeCheck size={14} className="text-blue-500 fill-blue-500/10" />
                 </a>
                 <p className="text-[10px] text-gray-400 mt-2">v1.0.0 &copy; 2025</p>
             </div>
